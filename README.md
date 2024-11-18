@@ -16,20 +16,20 @@ Multiple LLM Based AI Agent work together to gather information about stocks, to
 Clone the repository
 
 ```bash
-git clone https://github.com/parthhhx/Stock-Analysis-AI-Agent-Crew
+git clone https://github.com/AnuragRaut08/AI-Agent.git
 ```
 
 move to other folder
 
 ```bash
-mv ././Stock-Analysis-AI-Agent-Crew stock-analysis-crew
+mv ././AI-Agent AI folder
 ```
 
 
 ### STEP 01- Create a conda environment after opening the repository
 
 ```bash
-conda create -n stock-analysis-crew python=3.10 -y
+conda create -n AI folder python=3.10 -y
 ```
 
 ### STEP 02- install all the dependencis
@@ -53,8 +53,8 @@ python app.py
 
 
 ```bash
-Author: Parth Chaudhari
-Parth Chaudhari
-Email: parthchaudhari223@gmail.com
+Author: Anurag Raut
+Anurag Raut
+Email: anuragtraut2003@gmail.com
 
 ```
