@@ -1,44 +1,62 @@
-import streamlit as st
-import pandas as pd
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from helpers import upload_csv, get_google_sheet, perform_web_search, extract_info_with_llm
+from crewai import Crew
+from textwrap import dedent
 
-st.title("AI Agent for Automated Information Retrieval")
+from stock_analysis_agents import StockAnalysisAgents
+from stock_analysis_tasks import StockAnalysisTasks
 
-# File upload section
-st.header("Upload a CSV File or Connect to Google Sheets")
-file = st.file_uploader("Upload your CSV file", type=["csv"])
+from dotenv import load_dotenv
+load_dotenv()
 
-if file:
-    data = upload_csv(file)
-    st.write("Preview of Uploaded Data:")
-    st.dataframe(data)
 
-# Google Sheets section
-st.subheader("Or Connect to a Google Sheet")
-gsheet_url = st.text_input("Enter Google Sheet URL")
-if gsheet_url:
-    data = get_google_sheet(gsheet_url)
-    st.write("Preview of Google Sheet Data:")
-    st.dataframe(data)
+class FinancialCrew:
+  def __init__(self, company):
+    self.company = company
 
-if data is not None:
-    # Select the primary column
-    column = st.selectbox("Select the primary column", data.columns)
-    
-    # Custom prompt input
-    st.header("Define Your Query")
-    query_template = st.text_input("Enter your query template", "Get the email address of {entity}")
-    
-    if st.button("Start Information Retrieval"):
-        results = perform_web_search(data[column], query_template)
-        extracted_info = extract_info_with_llm(results)
-        
-        # Display results
-        st.write("Extracted Information:")
-        st.dataframe(extracted_info)
-        
-        # Download option
-        st.download_button("Download Results as CSV", data=extracted_info.to_csv(), file_name="extracted_info.csv")
+  def run(self):
+    agents = StockAnalysisAgents()
+    tasks = StockAnalysisTasks()
 
+    research_analyst_agent = agents.research_analyst()
+    financial_analyst_agent = agents.financial_analyst()
+    investment_advisor_agent = agents.investment_advisor()
+
+    research_task = tasks.research(research_analyst_agent, self.company)
+    financial_task = tasks.financial_analysis(financial_analyst_agent)
+    filings_task = tasks.filings_analysis(financial_analyst_agent)
+    recommend_task = tasks.recommend(investment_advisor_agent)
+
+
+    crew = Crew(
+      agents=[
+        research_analyst_agent,
+        financial_analyst_agent,
+        investment_advisor_agent
+      ],
+      tasks=[
+        research_task,
+        financial_task,
+        filings_task,
+        recommend_task
+      ],
+      verbose=True
+    )
+
+    result = crew.kickoff()
+    return result
+
+if __name__ == "__main__":
+  print("## Welcome to Financial Analysis Crew")
+  print('-------------------------------')
+  company = input(
+    dedent("""
+      What is the company you want to analyze?
+    """))
+  
+  financial_crew = FinancialCrew(company)
+  result = financial_crew.run()
+  print("\n\n########################")
+  print("## Here is the Report")
+  print("########################\n")
+  print(result)
+  with open("report.txt", "w+") as f:
+    f.write(result)

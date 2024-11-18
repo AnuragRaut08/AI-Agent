@@ -1,3 +1,60 @@
-# AI-Agent
-The Data Display and Storage component is a crucial interface element that presents AI-extracted information in an intuitive, user-friendly dashboard format. It features a dynamic table display that organizes extracted data by entity type, with sortable columns and filtering capabilities for easy data navigation. Users can view confidence scores, timestamps, and entity relationships in real-time as the AI processes new information. The component offers seamless data export functionality, allowing users to download their selected data in CSV format or automatically sync it with connected Google Sheets. This dual-purpose system ensures that users can both visualize their data instantly through the dashboard and preserve it for future analysis through flexible export options. The display refreshes automatically as new data is processed, maintaining data accuracy while providing a responsive and efficient user experience.
-The Data Display component shows extracted information in a table format and allows users to download data or sync with Google Sheets.
+# Stock-Analysis-AI-Agent-Crew
+Multiple LLM Based AI Agent work together to gather information about stocks, to process financial details and market sentiments and to advice to perform trade.
+
+## Dopendencies
+
+1. Python version==3.10.0
+2. Anaconda setup
+3. API key from https://serper.dev/login
+4. API key from https://console.groq.com/keys
+5. API key from https://account.browserless.io/
+6. API key from https://sec-api.io/login
+
+# How to run?
+### STEPS:
+
+Clone the repository
+
+```bash
+git clone https://github.com/parthhhx/Stock-Analysis-AI-Agent-Crew
+```
+
+move to other folder
+
+```bash
+mv ././Stock-Analysis-AI-Agent-Crew stock-analysis-crew
+```
+
+
+### STEP 01- Create a conda environment after opening the repository
+
+```bash
+conda create -n stock-analysis-crew python=3.10 -y
+```
+
+### STEP 02- install all the dependencis
+```bash
+poetry install --no-root
+```
+
+
+
+### STEP 03- SET API Keys in env file 
+
+```bash
+#set api keys in .env file
+#ie: BROWSERLESS_API_KEY=756209
+```
+
+```bash
+# Finally run the following
+python app.py
+```
+
+
+```bash
+Author: Parth Chaudhari
+Parth Chaudhari
+Email: parthchaudhari223@gmail.com
+
+```
