@@ -1,7 +1,7 @@
 # AI_Agent Project
 Multiple LLM Based AI Agent work together to gather information about stocks, to process financial details and market sentiments and to advice to perform trade.
 
-## Dopendencies
+## Dependencies
 
 1. Python version==3.10.0
 2. Anaconda setup
