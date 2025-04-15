@@ -1,5 +1,5 @@
 # AI_Agent Project
-Multiple LLM Based AI Agent work together to gather information about stocks, to process financial details and market sentiments and to advice to perform trade.
+Multiple LLM Based AI Agent work together to gather information about stocks, to process financial details and market sentiments and to advice to perform trading actions.
 
 ## Dependencies for the project
 
