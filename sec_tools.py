@@ -63,6 +63,7 @@ class SECTools():
       "sort": [{ "filedAt": { "order": "desc" }}]
     }
 
+	  
     fillings = queryApi.get_filings(query)['filings']
     if len(fillings) == 0:
       return "Sorry, I couldn't find any filling for this stock, check if the ticker is correct."
