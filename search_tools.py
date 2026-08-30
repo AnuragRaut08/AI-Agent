@@ -5,7 +5,7 @@ import requests
 from langchain.tools import tool
 
 
-class SearchTools():
+class SearchTools(): 
   @tool("Search the internet")
   def search_internet(query):
     """Useful to search the internet 
