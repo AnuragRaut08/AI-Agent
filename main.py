@@ -49,7 +49,7 @@ if __name__ == "__main__":
   print('-------------------------------')
   company = input(
     dedent("""
-      What is the company you want to analyze?
+      Which is the company you want to analyze?
     """))
   
   financial_crew = FinancialCrew(company)
